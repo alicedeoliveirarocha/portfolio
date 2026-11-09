@@ -1,404 +1,257 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Portfólio de Alice de Oliveira Rocha, estudante de Análise e Desenvolvimento de Sistemas e desenvolvedora full-stack.">
-<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Portfólio de Alice Rocha</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-<style>
-/* Layout: página única editorial. Hero com mapa de órbitas da stack à direita, depois projeto em destaque, método de trabalho, stack, trajetória. */
-:root {
-  --bg: #EEF0F6;
-  --surface: #FFFFFF;
-  --fg: #12141C;
-  --muted: #565B70;
-  --line: #CDD1E0;
-  --accent: #C42A62;
-  --accent-soft: #F6DCE7;
-  --on-accent: #FFFFFF;
-  --font-display: "Syne", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0D0F17;
-    --surface: #151826;
-    --fg: #ECEEF7;
-    --muted: #9AA0B8;
-    --line: #272B3D;
-    --accent: #FF6B9D;
-    --accent-soft: #3A1C2B;
-    --on-accent: #1A0A12;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0D0F17;
-  --surface: #151826;
-  --fg: #ECEEF7;
-  --muted: #9AA0B8;
-  --line: #272B3D;
-  --accent: #FF6B9D;
-  --accent-soft: #3A1C2B;
-  --on-accent: #1A0A12;
-  color-scheme: dark;
-}
-
-* { box-sizing: border-box; }
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.6;
-  padding-block: 0;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-.col { max-width: 1080px; margin-inline: auto; }
-h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.08; }
-p { margin: 0; }
-a { color: inherit; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-.label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* topo */
-.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 22px; flex-wrap: wrap; }
-.top .mark { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
-.top nav { display: flex; gap: 20px; flex-wrap: wrap; }
-.top nav a { text-decoration: none; font-size: 15px; color: var(--muted); }
-.top nav a:hover { color: var(--fg); }
-
-/* hero */
-.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 32px; align-items: center; padding-block: 36px 64px; }
-.hero h1 { font-size: clamp(2.6rem, 7.2vw, 5.2rem); font-weight: 800; letter-spacing: -0.02em; margin-block: 14px 22px; }
-.hero h1 em { font-style: normal; color: var(--accent); }
-.hero .lead { font-size: 1.15rem; max-width: 34em; color: var(--fg); }
-.status { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 14px; }
-.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: block; }
-.orbit { width: 100%; max-width: 460px; justify-self: center; }
-.orbit svg { width: 100%; height: auto; display: block; }
-.orbit .ring { fill: none; stroke: var(--line); stroke-width: 1; }
-.orbit .dot { fill: var(--fg); }
-.orbit .core { fill: var(--accent); }
-.orbit .halo { fill: var(--accent); opacity: 0.18; transform-origin: 200px 200px; animation: pulse 4s ease-in-out infinite; }
-.orbit text { font-family: var(--font-mono); font-size: 13px; fill: var(--fg); paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }
-.orbit .core-label { font-family: var(--font-display); font-weight: 700; font-size: 15px; fill: var(--fg); }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }
-@media (prefers-reduced-motion: reduce) { .orbit .halo { animation: none; } }
-
-/* seções */
-section { padding-block: 64px; border-top: 1px solid var(--line); }
-.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: 32px; margin-bottom: 36px; }
-.sec-head h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); font-weight: 700; }
-
-/* projeto em destaque */
-.feature { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: clamp(20px, 4vw, 40px); display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 36px; }
-.feature h3 { font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 800; letter-spacing: -0.01em; margin-block: 10px 16px; }
-.feature p + p { margin-top: 14px; }
-.facts { display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0; list-style: none; }
-.facts li { display: flex; flex-direction: column; gap: 2px; padding-block: 14px; border-top: 1px solid var(--line); }
-.facts li:first-child { border-top: 0; padding-top: 0; }
-.facts b { font-weight: 600; }
-.facts span { color: var(--muted); font-size: 15px; }
-.award { display: inline-block; background: var(--accent); color: var(--on-accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 10px; border-radius: 3px; }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
-.tags span { font-family: var(--font-mono); font-size: 13px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); }
-
-.modules-head { margin-top: 48px; margin-bottom: 18px; }
-.modules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.mod { padding: 20px 22px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.mod h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
-.mod p { color: var(--muted); font-size: 15px; line-height: 1.55; }
-.links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-.btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px; padding: 10px 18px; border-radius: 4px; border: 1px solid var(--fg); color: var(--fg); background: transparent; }
-.btn:hover { background: var(--fg); color: var(--bg); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.btn.primary:hover { filter: brightness(1.08); background: var(--accent); color: var(--on-accent); }
-.second { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: 32px; padding-top: 24px; }
-.second h3 { font-size: 1.4rem; font-weight: 700; }
-
-/* método */
-.method { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 48px; }
-.method h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
-.method p { color: var(--muted); }
-
-/* stack */
-.stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
-.stack h3 { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-.stack ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.stack li { padding-bottom: 6px; border-bottom: 1px solid var(--line); }
-
-/* trajetória */
-.timeline { margin: 0; padding: 0; list-style: none; }
-.timeline li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: 32px; padding-block: 18px; border-top: 1px solid var(--line); }
-.timeline li:first-child { border-top: 0; padding-top: 0; }
-.timeline .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); padding-top: 4px; }
-.timeline h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
-.timeline p { color: var(--muted); }
-.langs { margin-top: 28px; display: flex; gap: 24px; flex-wrap: wrap; }
-.langs span { font-size: 15px; }
-.langs b { font-weight: 600; }
-
-footer { border-top: 1px solid var(--line); padding-block: 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: 32px; }
-footer h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); font-weight: 700; }
-footer p { max-width: 36em; }
-footer .small { margin-top: 18px; color: var(--muted); font-size: 14px; }
-
-@media (max-width: 860px) {
-  .hero, .feature, .sec-head, .second, .method, .timeline li, footer { grid-template-columns: minmax(0, 1fr); }
-  .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .modules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sec-head { gap: 12px; margin-bottom: 28px; }
-  .hero { padding-block: 16px 48px; }
-  section { padding-block: 48px; }
-  .timeline li { gap: 6px; }
-}
-@media (max-width: 560px) {
-  .modules { grid-template-columns: minmax(0, 1fr); }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Portfólio de Alice de Oliveira Rocha, estudante de Análise e Desenvolvimento de Sistemas e desenvolvedora full-stack em formação.">
+  <meta name="theme-color" content="#eef0f6">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Alice Rocha — Desenvolvedora full-stack">
+  <meta property="og:description" content="Conheça meus projetos, minha trajetória e as tecnologias com que trabalho.">
+  <title>Alice Rocha — Desenvolvedora full-stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #eef0f6; --surface: #fff; --fg: #12141c; --muted: #565b70;
+      --line: #cdd1e0; --accent: #c42a62; --on-accent: #fff;
+      --display: "Syne", "Helvetica Neue", Arial, sans-serif;
+      --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { color-scheme: dark; --bg:#0d0f17; --surface:#151826; --fg:#eceef7; --muted:#aeb3c7; --line:#30354a; --accent:#ff6b9d; --on-accent:#1a0a12; }
+    }
+    :root[data-theme="dark"] { color-scheme:dark; --bg:#0d0f17; --surface:#151826; --fg:#eceef7; --muted:#aeb3c7; --line:#30354a; --accent:#ff6b9d; --on-accent:#1a0a12; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:1rem; }
+    body { margin:0; padding-inline:max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right)); background:var(--bg); color:var(--fg); font:17px/1.65 var(--body); }
+    a { color:inherit; }
+    a:focus-visible, button:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+    .skip { position:absolute; top:-100px; left:16px; z-index:5; padding:10px 14px; background:var(--surface); color:var(--fg); }
+    .skip:focus { top:12px; }
+    .wrap { max-width:1080px; margin:auto; }
+    h1,h2,h3 { margin:0; font-family:var(--display); line-height:1.12; text-wrap:balance; }
+    p { margin:0; }
+    .label { color:var(--muted); font:500 12px/1.5 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+    .top { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    .brand { font:700 19px var(--display); text-decoration:none; }
+    .nav { display:flex; align-items:center; flex-wrap:wrap; gap:18px; }
+    .nav a { color:var(--muted); font-size:15px; text-decoration:none; }
+    .nav a:hover { color:var(--fg); }
+    .theme { border:1px solid var(--line); border-radius:4px; background:var(--surface); color:var(--fg); padding:7px 10px; font:500 13px var(--body); cursor:pointer; }
+    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:center; padding:54px 0 70px; }
+    h1 { margin:14px 0 20px; font-size:clamp(2.7rem,7vw,5.2rem); letter-spacing:-.035em; }
+    h1 em { color:var(--accent); font-style:normal; }
+    .lead { max-width:38em; font-size:1.12rem; }
+    .status { display:inline-flex; align-items:center; gap:10px; margin-top:24px; padding:8px 14px; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:14px; }
+    .status::before { width:8px; height:8px; flex:none; border-radius:50%; background:var(--accent); content:""; }
+    .links { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .btn { display:inline-block; padding:10px 16px; border:1px solid var(--fg); border-radius:4px; text-decoration:none; font-size:15px; font-weight:600; transition:background .15s,color .15s; }
+    .btn:hover { background:var(--fg); color:var(--bg); }
+    .btn.primary { border-color:var(--accent); background:var(--accent); color:var(--on-accent); }
+    .btn.primary:hover { filter:brightness(1.08); }
+    .orbit { width:100%; max-width:440px; justify-self:center; }
+    .orbit svg { display:block; width:100%; height:auto; }
+    .ring { fill:none; stroke:var(--line); stroke-width:1; }
+    .dot { fill:var(--fg); } .core,.halo { fill:var(--accent); }
+    .halo { opacity:.18; transform-origin:200px 200px; animation:pulse 4s ease-in-out infinite; }
+    .orbit text { fill:var(--fg); stroke:var(--bg); stroke-width:5px; stroke-linejoin:round; paint-order:stroke; font:13px var(--mono); }
+    .orbit .core-label { stroke-width:6px; font:700 15px var(--display); }
+    @keyframes pulse { 50% { transform:scale(1.35); } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
+    section { padding:62px 0; border-top:1px solid var(--line); scroll-margin-top:12px; }
+    .sec-head { display:grid; grid-template-columns:1fr 2.2fr; gap:30px; margin-bottom:32px; }
+    .sec-head h2, footer h2 { font-size:clamp(1.8rem,3.8vw,2.5rem); }
+    .feature { display:grid; grid-template-columns:1.4fr 1fr; gap:34px; padding:clamp(22px,4vw,40px); border:1px solid var(--line); border-radius:6px; background:var(--surface); }
+    .award { display:inline-block; padding:5px 10px; border-radius:3px; background:var(--accent); color:var(--on-accent); font:500 11px var(--mono); letter-spacing:.07em; text-transform:uppercase; }
+    .feature h3 { margin:12px 0; font-size:clamp(2rem,4.6vw,3.2rem); }
+    .feature p + p { margin-top:14px; }
+    .facts { margin:0; padding:0; list-style:none; }
+    .facts li { display:flex; flex-direction:column; gap:2px; padding:14px 0; border-top:1px solid var(--line); }
+    .facts li:first-child { padding-top:0; border:0; }
+    .facts span,.muted { color:var(--muted); }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+    .tags span { padding:3px 9px; border:1px solid var(--line); border-radius:3px; background:var(--bg); font:13px var(--mono); }
+    .modules-head { margin:42px 0 16px; }
+    .modules { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line); }
+    .mod { padding:19px 20px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .mod h3 { margin-bottom:7px; font-size:1.05rem; }
+    .mod p { color:var(--muted); font-size:15px; line-height:1.55; }
+    .second { display:grid; grid-template-columns:1fr 2.2fr; gap:30px; margin-top:26px; padding-top:24px; border-top:1px solid var(--line); }
+    .second h3 { margin-top:8px; font-size:1.35rem; }
+    .method { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 46px; }
+    .method h3 { margin-bottom:8px; font-size:1.2rem; }
+    .method p { color:var(--muted); }
+    .stack { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:26px; }
+    .stack h3 { margin-bottom:11px; color:var(--muted); font:500 12px var(--mono); letter-spacing:.1em; text-transform:uppercase; }
+    .stack ul { display:flex; flex-direction:column; gap:6px; margin:0; padding:0; list-style:none; }
+    .stack li { padding-bottom:6px; border-bottom:1px solid var(--line); }
+    .timeline { margin:0; padding:0; list-style:none; }
+    .timeline li { display:grid; grid-template-columns:1fr 2.2fr; gap:30px; padding:18px 0; border-top:1px solid var(--line); }
+    .timeline li:first-child { padding-top:0; border:0; }
+    .when { color:var(--muted); font:13px var(--mono); }
+    .timeline h3 { margin-bottom:4px; font-size:1.1rem; }
+    .timeline p { color:var(--muted); }
+    .langs { display:flex; flex-wrap:wrap; gap:24px; margin-top:26px; font-size:15px; }
+    footer { display:grid; grid-template-columns:1fr 2.2fr; gap:30px; padding:48px 0 56px; border-top:1px solid var(--line); }
+    footer p { max-width:38em; }
+    .small { margin-top:18px; color:var(--muted); font-size:14px; }
+    @media (max-width:860px) {
+      .hero,.feature,.sec-head,.second,.timeline li,footer { grid-template-columns:1fr; }
+      .hero { padding:32px 0 48px; }
+      .orbit { max-width:390px; }
+      section { padding:48px 0; }
+      .sec-head { gap:10px; margin-bottom:24px; }
+      .timeline li { gap:5px; }
+    }
+    @media (max-width:560px) {
+      body { font-size:16px; }
+      .top { padding:16px 0; }
+      .nav { gap:12px; }
+      .nav a { font-size:14px; }
+      .theme { margin-left:auto; }
+      .modules { grid-template-columns:1fr; }
+      .stack { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 18px; }
+      .method { gap:24px; }
+      .status { align-items:flex-start; border-radius:14px; }
+    }
+  </style>
 </head>
 <body>
-
-<div class="col">
-  <header class="top">
-    <span class="mark">Alice Rocha</span>
-    <nav aria-label="Seções">
-      <a href="#projeto">Projeto</a>
-      <a href="#metodo">Como trabalho</a>
-      <a href="#stack">Stack</a>
-      <a href="#trajetoria">Trajetória</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="hero">
-      <div>
-        <span class="label">Desenvolvimento full-stack · São Paulo</span>
-        <h1>Alice de Oliveira <em>Rocha</em></h1>
-        <p class="lead">Estudante de Análise e Desenvolvimento de Sistemas na UNASP, com formatura prevista para junho de 2027. Construo aplicações web completas, do banco de dados à tela, e gosto de achar a causa de um bug por eliminação.</p>
-        <div class="status"><i aria-hidden="true"></i> Buscando estágio ou vaga júnior em desenvolvimento</div>
-        <div class="links">
-          <a class="btn primary" href="https://www.linkedin.com/in/alice-de-oliveira-rocha-956bb2225/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="btn" href="https://github.com/alicedeoliveirarocha" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="btn" href="https://mikrokosmos-i9bp.vercel.app/" target="_blank" rel="noopener noreferrer">Mikrokosmos no ar</a>
-        </div>
-      </div>
-      <div class="orbit">
-        <svg viewBox="0 0 400 400" role="img" aria-label="Mapa das tecnologias que uso, em órbita ao redor do projeto Mikrokosmos">
-          <circle class="ring" cx="200" cy="200" r="70"/>
-          <circle class="ring" cx="200" cy="200" r="125"/>
-          <circle class="ring" cx="200" cy="200" r="180"/>
-          <circle class="halo" cx="200" cy="200" r="22"/>
-          <circle class="core" cx="200" cy="200" r="9"/>
-          <text class="core-label" x="200" y="238" text-anchor="middle">Mikrokosmos</text>
-
-          <circle class="dot" cx="260.6" cy="165" r="4"/><text x="270" y="169">TypeScript</text>
-          <circle class="dot" cx="139.4" cy="235" r="4"/><text x="129" y="239" text-anchor="end">React</text>
-          <circle class="dot" cx="317.5" cy="242.8" r="4"/><text x="327" y="247">Supabase</text>
-          <circle class="dot" cx="82.5" cy="157.2" r="4"/><text x="92" y="161">PostgreSQL</text>
-          <circle class="dot" cx="242.8" cy="82.5" r="4"/><text x="252" y="86">Stripe</text>
-          <circle class="dot" cx="290" cy="355.9" r="4"/><text x="290" y="378" text-anchor="middle">Java</text>
-          <circle class="dot" cx="96.8" cy="52.6" r="4"/><text x="106" y="56">Python</text>
-          <circle class="dot" cx="369.1" cy="138.4" r="4"/><text x="359" y="142" text-anchor="end">JavaScript</text>
-        </svg>
-      </div>
-    </div>
-
-    <section id="projeto">
-      <div class="sec-head">
-        <span class="label">Projeto em destaque</span>
-        <h2>Um sistema full-stack que saiu do papel e está no ar.</h2>
-      </div>
-
-      <article class="feature">
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="#inicio" aria-label="Alice Rocha — início">Alice Rocha</a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#projeto">Projeto</a><a href="#metodo">Como trabalho</a><a href="#stack">Stack</a><a href="#trajetoria">Trajetória</a>
+        <button class="theme" type="button" aria-label="Ativar tema escuro" aria-pressed="false">Tema escuro</button>
+      </nav>
+    </header>
+    <main id="conteudo">
+      <section class="hero" id="inicio" aria-labelledby="nome">
         <div>
-          <span class="award">2º lugar na competição da turma</span>
-          <h3>Mikrokosmos</h3>
-          <p class="label">Themed-Sync System</p>
-          <p>Sistema web para um restaurante temático de K-pop, em que o visual, o cardápio e a música mudam conforme a era escolhida. Foi desenvolvido em equipe durante a graduação e está em produção. O front-end usa React com TypeScript, e os dados ficam no Supabase, sobre PostgreSQL.</p>
-          <p>O cliente abre o pedido pela mesa (como a MK-01), escolhe uma das sete eras de K-pop ou uma saga de cinema, monta o pedido e escolhe 3 photocards grátis. O pedido segue para a cozinha, e o delivery acompanha a entrega. O acesso é separado por perfis (RBAC), com matrizes de permissão que definem o que cada tipo de usuário vê e faz, e os pagamentos passam pelo Stripe.</p>
+          <span class="label">Desenvolvimento full-stack · São Paulo</span>
+          <h1 id="nome">Alice de Oliveira <em>Rocha</em></h1>
+          <p class="lead">Estudante de Análise e Desenvolvimento de Sistemas na UNASP, com formatura prevista para junho de 2027. Construo aplicações web completas, do banco de dados à tela, e gosto de encontrar a causa de um bug por eliminação.</p>
+          <div class="status">Buscando estágio ou vaga júnior em desenvolvimento</div>
           <div class="links">
-            <a class="btn primary" href="https://mikrokosmos-i9bp.vercel.app/" target="_blank" rel="noopener noreferrer">Ver o site no ar</a>
-            <a class="btn" href="https://github.com/alicedeoliveirarocha" target="_blank" rel="noopener noreferrer">Código no GitHub</a>
-          </div>
-          <div class="tags" aria-label="Tecnologias do projeto">
-            <span>React</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span><span>Stripe</span><span>RBAC</span>
+            <a class="btn primary" href="https://www.linkedin.com/in/alice-de-oliveira-rocha-956bb2225/" target="_blank" rel="noopener noreferrer">LinkedIn <span class="visually-hidden">(abre em nova aba)</span></a>
+            <a class="btn" href="https://github.com/alicedeoliveirarocha" target="_blank" rel="noopener noreferrer">GitHub <span class="visually-hidden">(abre em nova aba)</span></a>
+            <a class="btn" href="https://mikrokosmos-i9bp.vercel.app/" target="_blank" rel="noopener noreferrer">Mikrokosmos no ar</a>
           </div>
         </div>
-        <ul class="facts">
-          <li><b>Contexto</b><span>Projeto de turma, ADS na UNASP</span></li>
-          <li><b>Formato</b><span>Trabalho em equipe</span></li>
-          <li><b>Resultado</b><span>2º lugar entre os projetos da turma</span></li>
-          <li><b>Estado</b><span>Em produção</span></li>
+        <div class="orbit">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Tecnologias usadas no projeto Mikrokosmos">
+            <circle class="ring" cx="200" cy="200" r="70"/><circle class="ring" cx="200" cy="200" r="125"/><circle class="ring" cx="200" cy="200" r="180"/>
+            <circle class="halo" cx="200" cy="200" r="22"/><circle class="core" cx="200" cy="200" r="9"/>
+            <text class="core-label" x="200" y="238" text-anchor="middle">Mikrokosmos</text>
+            <circle class="dot" cx="260.6" cy="165" r="4"/><text x="270" y="169">TypeScript</text>
+            <circle class="dot" cx="139.4" cy="235" r="4"/><text x="129" y="239" text-anchor="end">React</text>
+            <circle class="dot" cx="317.5" cy="242.8" r="4"/><text x="327" y="247">Supabase</text>
+            <circle class="dot" cx="82.5" cy="157.2" r="4"/><text x="92" y="161">PostgreSQL</text>
+            <circle class="dot" cx="242.8" cy="82.5" r="4"/><text x="252" y="86">Stripe</text>
+            <circle class="dot" cx="290" cy="355.9" r="4"/><text x="290" y="378" text-anchor="middle">Java</text>
+            <circle class="dot" cx="96.8" cy="52.6" r="4"/><text x="106" y="56">Python</text>
+            <circle class="dot" cx="369.1" cy="138.4" r="4"/><text x="359" y="142" text-anchor="end">JavaScript</text>
+          </svg>
+        </div>
+      </section>
+
+      <section id="projeto" aria-labelledby="projeto-titulo">
+        <div class="sec-head"><span class="label">Projeto em destaque</span><h2 id="projeto-titulo">Um sistema full-stack que saiu do papel e está no ar.</h2></div>
+        <article class="feature">
+          <div>
+            <span class="award">2º lugar na competição da turma</span>
+            <h3>Mikrokosmos</h3>
+            <p class="label">Themed-Sync System</p>
+            <p>Sistema web para um restaurante temático de K-pop, em que o visual, o cardápio e a música mudam conforme a era escolhida. Desenvolvido em equipe durante a graduação e em produção. O front-end usa React com TypeScript, e os dados ficam no Supabase, sobre PostgreSQL.</p>
+            <p>O cliente abre o pedido pela mesa, escolhe uma das sete eras de K-pop ou uma saga de cinema, monta o pedido e escolhe três photocards grátis. O pedido segue para a cozinha, e o delivery acompanha a entrega. O acesso é separado por perfis (RBAC), com permissões por tipo de usuário, e os pagamentos passam pelo Stripe.</p>
+            <div class="links"><a class="btn primary" href="https://mikrokosmos-i9bp.vercel.app/" target="_blank" rel="noopener noreferrer">Ver o site no ar</a><a class="btn" href="https://github.com/alicedeoliveirarocha" target="_blank" rel="noopener noreferrer">Código no GitHub</a></div>
+            <div class="tags" aria-label="Tecnologias do projeto"><span>React</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span><span>Stripe</span><span>RBAC</span></div>
+          </div>
+          <ul class="facts"><li><b>Contexto</b><span>Projeto de turma, ADS na UNASP</span></li><li><b>Formato</b><span>Trabalho em equipe</span></li><li><b>Resultado</b><span>2º lugar entre os projetos da turma</span></li><li><b>Estado</b><span>Em produção</span></li></ul>
+        </article>
+        <h3 class="modules-head label">O que o Mikrokosmos faz</h3>
+        <div class="modules">
+          <article class="mod"><h3>Temas por era</h3><p>Sete universos K-pop (BTS, BLACKPINK, aespa, ENHYPEN, Red Velvet, NewJeans e ILLIT) e sagas de cinema. Cores, cardápio sazonal e player de música acompanham a era escolhida.</p></article>
+          <article class="mod"><h3>Quatro idiomas</h3><p>Interface em português, inglês, coreano e chinês, com seletor de idioma no topo da página.</p></article>
+          <article class="mod"><h3>Photocards</h3><p>Coleção de 77 cards em três raridades, com filtro por grupo. Cada pedido libera três photocards grátis.</p></article>
+          <article class="mod"><h3>Mikrokosmos Cinema</h3><p>Sessões por sala e horário, com combos de pipoca e lanches para acompanhar o filme.</p></article>
+          <article class="mod"><h3>Delivery</h3><p>Painel do entregador com pedidos prontos, em entrega e entregues, e tela de rastreio com previsão de chegada.</p></article>
+          <article class="mod"><h3>Analytics</h3><p>Faturamento, ticket médio, produtos mais vendidos, vendas por categoria, status dos pedidos e matriz BCG do cardápio.</p></article>
+          <article class="mod"><h3>Estoque e unidades</h3><p>Controle de insumos por categoria com nível mínimo, reposição, retirada com motivo e transferência entre unidades.</p></article>
+          <article class="mod"><h3>Mesas e equipe</h3><p>Mapa de mesas livres, ocupadas e reservadas, e cadastro de funcionários por unidade.</p></article>
+          <article class="mod"><h3>Cozinha</h3><p>O pedido chega como comanda e passa pelos status pendente, preparando e pronto antes de sair para entrega.</p></article>
+        </div>
+        <div class="second"><div><span class="label">Em andamento</span><h3>Projeto Integrador</h3></div><p>Sistema para restaurante do 4º semestre. O back-end é em Java puro, com HttpServer e JDBC, sem framework, conectado a um banco MySQL. O front-end está sendo feito em Angular.</p></div>
+      </section>
+
+      <section id="metodo" aria-labelledby="metodo-titulo">
+        <div class="sec-head"><span class="label">Como trabalho</span><h2 id="metodo-titulo">Primeiro entender o problema, depois mexer no código.</h2></div>
+        <div class="method">
+          <div><h3>Investigo por eliminação</h3><p>Quando algo quebra, leio os logs, levanto hipóteses e testo uma por vez até restar a causa real. Prefiro isso a trocar código no escuro.</p></div>
+          <div><h3>Comunico com clareza</h3><p>Vim do atendimento ao cliente, então sei explicar um problema técnico para quem não é da área e ouvir o que a pessoa realmente precisa.</p></div>
+          <div><h3>Aprendo rápido</h3><p>Trabalho com React e Angular, Java e Python, PostgreSQL e MySQL. Cada projeto da faculdade me levou a uma ferramenta diferente.</p></div>
+          <div><h3>Trabalho em equipe</h3><p>O Mikrokosmos foi feito em grupo e chegou à produção. Uso Git e GitHub no dia a dia para dividir o trabalho sem conflito.</p></div>
+        </div>
+      </section>
+
+      <section id="stack" aria-labelledby="stack-titulo">
+        <div class="sec-head"><span class="label">Stack</span><h2 id="stack-titulo">O que uso nos meus projetos.</h2></div>
+        <div class="stack">
+          <div><h3>Linguagens</h3><ul><li>Python</li><li>JavaScript</li><li>TypeScript</li><li>Java</li><li>SQL</li></ul></div>
+          <div><h3>Front-end</h3><ul><li>HTML e CSS</li><li>React</li><li>Angular</li></ul></div>
+          <div><h3>Dados e serviços</h3><ul><li>PostgreSQL</li><li>Supabase</li><li>MySQL</li><li>Stripe</li></ul></div>
+          <div><h3>Ferramentas</h3><ul><li>Git e GitHub</li><li>Excel</li></ul></div>
+        </div>
+      </section>
+
+      <section id="trajetoria" aria-labelledby="trajetoria-titulo">
+        <div class="sec-head"><span class="label">Trajetória</span><h2 id="trajetoria-titulo">Formação e experiência.</h2></div>
+        <ul class="timeline">
+          <li><span class="when">Previsão: jun/2027</span><div><h3>Análise e Desenvolvimento de Sistemas</h3><p>UNASP, campus São Paulo. Cursando o 4º semestre.</p></div></li>
+          <li><span class="when">Python Institute / Cisco</span><div><h3>Python Essentials</h3><p>Certificação em fundamentos da linguagem Python.</p></div></li>
+          <li><span class="when">Concluído em 2022</span><div><h3>Ensino Médio Técnico em TI</h3><p>Colégio UNASP. Primeiro contato formal com a área de tecnologia.</p></div></li>
+          <li><span class="when">Experiência</span><div><h3>Atendimento ao cliente, AeC e Invikta Web</h3><p>Resolução de problemas com clientes, comunicação objetiva e trabalho em equipe.</p></div></li>
         </ul>
-      </article>
-
-      <div class="modules-head label">O que o Mikrokosmos faz</div>
-      <div class="modules">
-        <div class="mod">
-          <h3>Temas por era</h3>
-          <p>Sete universos K-pop (BTS, BLACKPINK, aespa, ENHYPEN, Red Velvet, NewJeans e ILLIT) e sagas de cinema. Cores, cardápio sazonal e player de música acompanham a era escolhida.</p>
-        </div>
-        <div class="mod">
-          <h3>Quatro idiomas</h3>
-          <p>Interface em português, inglês, coreano e chinês, com seletor de idioma no topo da página.</p>
-        </div>
-        <div class="mod">
-          <h3>Photocards</h3>
-          <p>Coleção de 77 cards em três raridades (comum, rara e ultra rara), com filtro por grupo. Cada pedido libera 3 photocards grátis.</p>
-        </div>
-        <div class="mod">
-          <h3>Mikrokosmos Cinema</h3>
-          <p>Sessões por sala e horário, com combos de pipoca e lanches para acompanhar o filme.</p>
-        </div>
-        <div class="mod">
-          <h3>Delivery</h3>
-          <p>Painel do motoboy com pedidos prontos, em entrega e entregues, e uma tela de rastreio com previsão de chegada.</p>
-        </div>
-        <div class="mod">
-          <h3>Analytics</h3>
-          <p>Faturamento, ticket médio, produtos mais vendidos, vendas por categoria, status dos pedidos e matriz BCG do cardápio.</p>
-        </div>
-        <div class="mod">
-          <h3>Estoque e unidades</h3>
-          <p>Controle de insumos por categoria com nível mínimo, reposição, retirada com motivo e transferência entre unidades.</p>
-        </div>
-        <div class="mod">
-          <h3>Mesas e equipe</h3>
-          <p>Mapa de mesas livres, ocupadas e reservadas, e cadastro de funcionários por unidade com status ativo ou inativo.</p>
-        </div>
-        <div class="mod">
-          <h3>Cozinha</h3>
-          <p>O pedido chega à cozinha como comanda e passa pelos status pendente, preparando e pronto antes de sair para entrega.</p>
-        </div>
+        <div class="langs"><span><b>Português</b> nativo</span><span><b>Inglês</b> fluente</span></div>
+      </section>
+    </main>
+    <footer>
+      <h2>Vamos conversar.</h2>
+      <div><p>Estou procurando minha primeira oportunidade em desenvolvimento, em estágio ou como júnior. O caminho mais rápido para falar comigo é o LinkedIn, e meu código está no GitHub.</p>
+        <div class="links"><a class="btn primary" href="https://www.linkedin.com/in/alice-de-oliveira-rocha-956bb2225/" target="_blank" rel="noopener noreferrer">Falar pelo LinkedIn</a><a class="btn" href="https://github.com/alicedeoliveirarocha" target="_blank" rel="noopener noreferrer">Ver o GitHub</a></div>
+        <p class="small">Alice de Oliveira Rocha · Análise e Desenvolvimento de Sistemas, UNASP</p>
       </div>
-
-      <div class="second">
-        <div>
-          <span class="label">Em andamento</span>
-          <h3 style="margin-top:10px">Projeto Integrador</h3>
-        </div>
-        <p>Sistema para restaurante do 4º semestre. O back-end é em Java puro, com HttpServer e JDBC, sem framework, conectado a um banco MySQL. O front-end está sendo feito em Angular.</p>
-      </div>
-    </section>
-
-    <section id="metodo">
-      <div class="sec-head">
-        <span class="label">Como trabalho</span>
-        <h2>Primeiro entender o problema, depois mexer no código.</h2>
-      </div>
-      <div class="method">
-        <div>
-          <h3>Investigo por eliminação</h3>
-          <p>Quando algo quebra, leio os logs, levanto hipóteses e testo uma por vez até restar a causa real. Prefiro isso a trocar código no escuro.</p>
-        </div>
-        <div>
-          <h3>Comunico com clareza</h3>
-          <p>Vim do atendimento ao cliente, então sei explicar um problema técnico para quem não é da área e ouvir o que a pessoa realmente precisa.</p>
-        </div>
-        <div>
-          <h3>Aprendo rápido</h3>
-          <p>Trabalho com React e Angular, Java e Python, PostgreSQL e MySQL. Cada projeto da faculdade me levou a uma ferramenta diferente.</p>
-        </div>
-        <div>
-          <h3>Trabalho em equipe</h3>
-          <p>O Mikrokosmos foi feito em grupo e chegou à produção. Uso Git e GitHub no dia a dia para dividir o trabalho sem conflito.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="stack">
-      <div class="sec-head">
-        <span class="label">Stack</span>
-        <h2>O que uso nos meus projetos.</h2>
-      </div>
-      <div class="stack">
-        <div>
-          <h3>Linguagens</h3>
-          <ul><li>Python</li><li>JavaScript</li><li>TypeScript</li><li>Java</li><li>SQL</li></ul>
-        </div>
-        <div>
-          <h3>Front-end</h3>
-          <ul><li>HTML e CSS</li><li>React</li><li>Angular</li></ul>
-        </div>
-        <div>
-          <h3>Dados e serviços</h3>
-          <ul><li>PostgreSQL</li><li>Supabase</li><li>MySQL</li><li>Stripe</li></ul>
-        </div>
-        <div>
-          <h3>Ferramentas</h3>
-          <ul><li>Git e GitHub</li><li>Excel</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="trajetoria">
-      <div class="sec-head">
-        <span class="label">Trajetória</span>
-        <h2>Formação e experiência.</h2>
-      </div>
-      <ul class="timeline">
-        <li>
-          <span class="when">Previsão jun/2027</span>
-          <div>
-            <h3>Análise e Desenvolvimento de Sistemas</h3>
-            <p>UNASP, campus São Paulo. Cursando o 4º semestre.</p>
-          </div>
-        </li>
-        <li>
-          <span class="when">Python Institute / Cisco</span>
-          <div>
-            <h3>Python Essentials</h3>
-            <p>Certificação em fundamentos da linguagem Python.</p>
-          </div>
-        </li>
-        <li>
-          <span class="when">Concluído em 2022</span>
-          <div>
-            <h3>Ensino Médio Técnico em TI</h3>
-            <p>Colégio UNASP. Primeiro contato formal com a área de tecnologia.</p>
-          </div>
-        </li>
-        <li>
-          <span class="when">Experiência</span>
-          <div>
-            <h3>Atendimento ao cliente, AeC e Invikta Web</h3>
-            <p>Resolução de problemas com clientes, comunicação objetiva e trabalho em equipe.</p>
-          </div>
-        </li>
-      </ul>
-      <div class="langs">
-        <span><b>Português</b> nativo</span>
-        <span><b>Inglês</b> fluente</span>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <h2>Vamos conversar.</h2>
-    <div>
-      <p>Estou procurando minha primeira oportunidade em desenvolvimento, em estágio ou como júnior. O caminho mais rápido para falar comigo é o LinkedIn, e meu código está no GitHub.</p>
-      <div class="links">
-        <a class="btn primary" href="https://www.linkedin.com/in/alice-de-oliveira-rocha-956bb2225/" target="_blank" rel="noopener noreferrer">Falar pelo LinkedIn</a>
-        <a class="btn" href="https://github.com/alicedeoliveirarocha" target="_blank" rel="noopener noreferrer">Ver o GitHub</a>
-      </div>
-      <p class="small">Alice de Oliveira Rocha · Análise e Desenvolvimento de Sistemas, UNASP</p>
-    </div>
-  </footer>
-</div>
+    </footer>
+  </div>
+  <style>.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }</style>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const button = document.querySelector('.theme');
+      const key = 'alice-portfolio-theme';
+      try {
+        const saved = localStorage.getItem(key);
+        if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+      } catch (_) { /* O tema do sistema continua disponível se o armazenamento estiver bloqueado. */ }
+      const updateButton = () => {
+        const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+        button.textContent = dark ? 'Tema claro' : 'Tema escuro';
+        button.setAttribute('aria-label', dark ? 'Ativar tema claro' : 'Ativar tema escuro');
+        button.setAttribute('aria-pressed', String(dark));
+      };
+      button.addEventListener('click', () => {
+        const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try { localStorage.setItem(key, root.dataset.theme); } catch (_) { /* A preferência vale durante esta visita. */ }
+        updateButton();
+      });
+      updateButton();
+    })();
+  </script>
 </body>
 </html>
